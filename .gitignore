@@ -1,0 +1,15 @@
+# 依赖
+node_modules/
+
+# 构建产物(dist 由 CI/Docker 构建时生成)
+dist/
+dist-ssr/
+
+# 日志与系统文件
+*.log
+.DS_Store
+
+# 编辑器
+.idea/
+.vscode/
+*.swp

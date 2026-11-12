@@ -1,0 +1,16 @@
+{
+  "id": "infrastructure",
+  "name": "网络基础设施",
+  "description": "DNS、CDN、NAT、负载均衡与代理,理解请求到达服务之前经过的基础设施。",
+  "icon": "server",
+  "order": 3,
+  "plannedTutorials": [
+    "CDN 工作原理",
+    "NAT 地址转换",
+    "负载均衡",
+    "正向代理",
+    "反向代理",
+    "HTTPS 证书验证",
+    "WebSocket 通信"
+  ]
+}

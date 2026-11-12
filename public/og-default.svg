@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#080E1C"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#318BFF"/>
+  <path d="M 220 430 H 360 M 480 430 H 620 M 220 430 C 300 430 320 220 420 220 S 560 300 620 300" stroke="#318BFF" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="220" cy="430" r="14" fill="#42B8FF"/>
+  <circle cx="420" cy="220" r="14" fill="#8B7CFF"/>
+  <circle cx="620" cy="300" r="14" fill="#20D6A0"/>
+  <text x="120" y="160" fill="#F2F6FF" font-family="-apple-system, 'PingFang SC', sans-serif" font-size="76" font-weight="700">TechFlow</text>
+  <text x="120" y="230" fill="#A6B5D1" font-family="-apple-system, 'PingFang SC', sans-serif" font-size="34">用动画理解技术 · 计算机原理可视化交互学习平台</text>
+  <text x="120" y="540" fill="#7384A4" font-family="monospace" font-size="24">CPU · 网络 · TCP/IP · DNS · Tomcat · JVM</text>
+</svg>

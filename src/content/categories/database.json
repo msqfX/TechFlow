@@ -1,0 +1,19 @@
+{
+  "id": "database",
+  "name": "数据库原理",
+  "description": "索引、事务、日志与锁,理解 MySQL 等数据库高效可靠背后的机制。",
+  "icon": "database",
+  "order": 7,
+  "plannedTutorials": [
+    "MySQL 架构",
+    "B+Tree 索引",
+    "MySQL 查询执行过程",
+    "InnoDB Buffer Pool",
+    "MVCC",
+    "Redo Log",
+    "Undo Log",
+    "Binlog",
+    "事务隔离级别",
+    "数据库锁机制"
+  ]
+}

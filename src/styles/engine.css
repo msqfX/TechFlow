@@ -1,0 +1,603 @@
+/* 动画引擎场景样式:节点、连线、数据包、标签、Tooltip */
+
+.tf-scene-host {
+  position: relative;
+  width: 100%;
+  background:
+    radial-gradient(600px 300px at 50% 0%, rgba(49, 139, 255, 0.05), transparent 70%),
+    var(--bg-elevated);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tf-scene {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.tf-scene-canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+/* ===== 节点 ===== */
+.tf-node-body {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+  stroke-width: 1.4;
+  transition: stroke 0.25s var(--ease-out), fill 0.25s var(--ease-out);
+}
+
+.tf-node-circle {
+  stroke-width: 1.6;
+}
+
+.tf-node-glyph {
+  fill: var(--text-1);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.tf-node-label {
+  fill: var(--text-1);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.tf-node-sublabel {
+  fill: var(--text-3);
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+}
+
+.tf-node-dot {
+  fill: var(--text-3);
+  transition: fill 0.25s var(--ease-out);
+}
+
+.tf-node--clickable {
+  cursor: pointer;
+}
+
+.tf-node--idle .tf-node-body {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+}
+
+.tf-node--active .tf-node-body {
+  stroke: var(--accent-bright);
+  fill: color-mix(in srgb, var(--accent) 16%, var(--bg-panel));
+}
+
+.tf-node--active .tf-node-dot,
+.tf-node--processing .tf-node-dot {
+  fill: var(--accent-bright);
+}
+
+.tf-node--processing .tf-node-body {
+  stroke: var(--accent-bright);
+  fill: color-mix(in srgb, var(--accent) 10%, var(--bg-panel));
+}
+
+.tf-node--processing .tf-node-body {
+  animation: tf-node-breathe 1.2s ease-in-out infinite;
+}
+
+@keyframes tf-node-breathe {
+  0%,
+  100% {
+    stroke-opacity: 1;
+  }
+  50% {
+    stroke-opacity: 0.45;
+  }
+}
+
+.tf-node--success .tf-node-body {
+  stroke: var(--success);
+  fill: color-mix(in srgb, var(--success) 12%, var(--bg-panel));
+}
+
+.tf-node--success .tf-node-dot {
+  fill: var(--success);
+}
+
+.tf-node--error .tf-node-body {
+  stroke: var(--danger);
+  fill: color-mix(in srgb, var(--danger) 12%, var(--bg-panel));
+}
+
+.tf-node--error .tf-node-dot {
+  fill: var(--danger);
+}
+
+.tf-node--dim {
+  opacity: 0.45;
+}
+
+/* ===== 连线 ===== */
+.tf-link {
+  fill: none;
+  stroke: var(--border-2);
+  stroke-width: 1.5;
+  transition: stroke 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+}
+
+.tf-link--dashed {
+  stroke-dasharray: 5 5;
+}
+
+.tf-link--flow {
+  stroke: var(--accent-bright);
+  stroke-dasharray: 6 6;
+  animation: tf-link-flow 0.8s linear infinite;
+}
+
+@keyframes tf-link-flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.tf-link--dim {
+  opacity: 0.3;
+}
+
+.tf-link--success {
+  stroke: var(--success);
+}
+
+.tf-link--danger {
+  stroke: var(--danger);
+}
+
+.tf-link--accent {
+  stroke: var(--accent-bright);
+}
+
+.tf-link--arrow.tf-arrow-muted {
+  marker-end: url('#tf-arrow-muted');
+}
+
+.tf-link--arrow.tf-arrow-accent {
+  marker-end: url('#tf-arrow-accent');
+}
+
+.tf-link--arrow.tf-arrow-success {
+  marker-end: url('#tf-arrow-success');
+}
+
+.tf-link--arrow.tf-arrow-danger {
+  marker-end: url('#tf-arrow-danger');
+}
+
+/* ===== 数据包 ===== */
+.tf-packet-body {
+  fill: var(--accent-bright);
+  stroke: none;
+  filter: drop-shadow(0 0 6px rgba(66, 184, 255, 0.55));
+}
+
+.tf-packet-body-rect {
+  fill: color-mix(in srgb, var(--accent) 24%, var(--bg-panel));
+  stroke: var(--accent-bright);
+  stroke-width: 1.3;
+}
+
+.tf-packet--purple .tf-packet-body {
+  fill: var(--accent-purple);
+  filter: drop-shadow(0 0 6px rgba(139, 124, 255, 0.55));
+}
+
+.tf-packet--purple .tf-packet-body-rect {
+  fill: color-mix(in srgb, var(--accent-purple) 24%, var(--bg-panel));
+  stroke: var(--accent-purple);
+}
+
+.tf-packet--success .tf-packet-body {
+  fill: var(--success);
+  filter: drop-shadow(0 0 6px rgba(32, 214, 160, 0.5));
+}
+
+.tf-packet--success .tf-packet-body-rect {
+  fill: color-mix(in srgb, var(--success) 22%, var(--bg-panel));
+  stroke: var(--success);
+}
+
+.tf-packet--warning .tf-packet-body {
+  fill: var(--warning);
+}
+
+.tf-packet--warning .tf-packet-body-rect {
+  fill: color-mix(in srgb, var(--warning) 22%, var(--bg-panel));
+  stroke: var(--warning);
+}
+
+.tf-packet--danger .tf-packet-body {
+  fill: var(--danger);
+}
+
+.tf-packet--danger .tf-packet-body-rect {
+  fill: color-mix(in srgb, var(--danger) 22%, var(--bg-panel));
+  stroke: var(--danger);
+}
+
+.tf-packet-label {
+  fill: var(--text-1);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--bg-elevated);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* ===== 标签 ===== */
+.tf-label {
+  font-size: 12px;
+  font-family: var(--font-sans);
+}
+
+.tf-label--muted {
+  fill: var(--text-3);
+}
+
+.tf-label--accent {
+  fill: var(--accent-bright);
+  font-weight: 600;
+}
+
+.tf-label--mono {
+  fill: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.tf-label-pill {
+  fill: var(--text-2);
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.tf-label-pill-bg {
+  fill: var(--bg-panel);
+  stroke: var(--border-1);
+}
+
+/* ===== Tooltip ===== */
+.tf-tooltip {
+  position: absolute;
+  z-index: 20;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  line-height: 1.6;
+  box-shadow: var(--shadow-panel);
+  pointer-events: none;
+}
+
+.tf-tooltip strong {
+  color: var(--text-1);
+}
+
+/* ===== IP 地址场景 ===== */
+.tf-ip-decimal {
+  fill: var(--text-1);
+  font-size: 30px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.tf-ip-divider {
+  stroke: var(--warning);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.tf-bit-cell {
+  fill: var(--bg-hover);
+  stroke: var(--border-1);
+  transition: fill 0.35s var(--ease-out), stroke 0.35s var(--ease-out);
+}
+
+.tf-bit-cell--on {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+}
+
+.tf-bit-cell--net {
+  fill: color-mix(in srgb, var(--accent) 22%, var(--bg-panel));
+  stroke: var(--accent-bright);
+}
+
+.tf-bit-cell--host {
+  fill: color-mix(in srgb, var(--accent-purple) 20%, var(--bg-panel));
+  stroke: var(--accent-purple);
+}
+
+.tf-bit-cell--borrow {
+  fill: color-mix(in srgb, var(--warning) 18%, var(--bg-panel));
+  stroke: var(--warning);
+}
+
+.tf-subnet-row-bg {
+  fill: var(--bg-panel);
+  stroke: var(--border-1);
+}
+
+.tf-subnet-idx {
+  fill: var(--accent-bright);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.tf-subnet-mono {
+  fill: var(--text-2);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.tf-subnet-result {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.tf-subnet-result.ok {
+  fill: var(--success);
+}
+
+.tf-subnet-result.bad {
+  fill: var(--danger);
+}
+
+/* ===== TCP 状态芯片 ===== */
+.tf-tcp-state {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  fill: var(--text-3);
+}
+
+.tf-tcp-state--active {
+  fill: var(--accent-bright);
+}
+
+.tf-tcp-state--ok {
+  fill: var(--success);
+}
+
+.tf-tcp-state--warning {
+  fill: var(--warning);
+}
+
+.tf-tcp-state--muted {
+  fill: var(--text-3);
+  opacity: 0.7;
+}
+
+.tf-tw-bar {
+  fill: var(--bg-hover);
+  stroke: var(--border-1);
+}
+
+.tf-tw-fill {
+  fill: linear-gradient;
+  fill: var(--warning);
+  opacity: 0.85;
+}
+
+.tf-packet-body--accent {
+  fill: color-mix(in srgb, var(--accent) 24%, var(--bg-panel));
+  stroke: var(--accent-bright);
+  filter: none;
+}
+
+.tf-packet-body--purple {
+  fill: color-mix(in srgb, var(--accent-purple) 24%, var(--bg-panel));
+  stroke: var(--accent-purple);
+}
+
+.tf-packet-body--success {
+  fill: color-mix(in srgb, var(--success) 22%, var(--bg-panel));
+  stroke: var(--success);
+}
+
+.tf-packet-body--warning {
+  fill: color-mix(in srgb, var(--warning) 22%, var(--bg-panel));
+  stroke: var(--warning);
+}
+
+.tf-packet-body--danger {
+  fill: color-mix(in srgb, var(--danger) 22%, var(--bg-panel));
+  stroke: var(--danger);
+}
+
+/* ===== HTTP 阶段流水线 ===== */
+.tf-http-stage {
+  fill: var(--bg-panel);
+  stroke: var(--border-1);
+  transition: stroke 0.3s var(--ease-out), fill 0.3s var(--ease-out);
+}
+
+.tf-http-stage.is-active {
+  stroke: var(--accent-bright);
+  fill: color-mix(in srgb, var(--accent) 12%, var(--bg-panel));
+}
+
+.tf-http-stage.is-done {
+  stroke: color-mix(in srgb, var(--success) 45%, transparent);
+}
+
+.tf-http-title {
+  fill: var(--text-1);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.tf-http-status {
+  fill: var(--text-3);
+  font-size: 14px;
+  font-family: var(--font-mono);
+  text-anchor: middle;
+}
+
+.tf-http-status.is-active {
+  fill: var(--accent-bright);
+}
+
+.tf-http-status.is-done {
+  fill: var(--success);
+}
+
+/* ===== CPU 场景 ===== */
+.tf-cpu-block {
+  fill: color-mix(in srgb, var(--accent) 7%, var(--bg-panel));
+  stroke: var(--border-2);
+}
+
+.tf-mem-block {
+  fill: color-mix(in srgb, var(--accent-purple) 7%, var(--bg-panel));
+  stroke: var(--border-2);
+}
+
+.tf-cpu-value {
+  fill: var(--text-1);
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.tf-alu-box {
+  fill: var(--bg-panel);
+  stroke: var(--accent-bright);
+  stroke-dasharray: 4 3;
+}
+
+.tf-mem-cell {
+  fill: var(--bg-panel);
+  stroke: var(--border-1);
+  transition: fill 0.3s var(--ease-out), stroke 0.3s var(--ease-out);
+}
+
+.tf-mem-cell.is-written {
+  stroke: var(--success);
+  fill: color-mix(in srgb, var(--success) 10%, var(--bg-panel));
+}
+
+.tf-phase-chip {
+  fill: var(--text-3);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.tf-phase-chip.is-active {
+  fill: var(--accent-bright);
+}
+
+.tf-subnet-mono.is-current {
+  fill: var(--accent-bright);
+  font-weight: 700;
+}
+
+.tf-subnet-mono.ok {
+  fill: var(--success);
+}
+
+/* ===== JVM 场景 ===== */
+.tf-jvm-gen {
+  fill: color-mix(in srgb, var(--accent) 6%, var(--bg-panel));
+  stroke: var(--border-1);
+  stroke-dasharray: 3 3;
+}
+
+.tf-jvm-gen--old {
+  fill: color-mix(in srgb, var(--accent-purple) 8%, var(--bg-panel));
+}
+
+.tf-jvm-obj-rect {
+  fill: color-mix(in srgb, var(--accent) 18%, var(--bg-panel));
+  stroke: var(--accent-bright);
+}
+
+.tf-jvm-obj-rect.is-survivor {
+  fill: color-mix(in srgb, var(--success) 16%, var(--bg-panel));
+  stroke: var(--success);
+}
+
+.tf-jvm-obj-rect.is-old {
+  fill: color-mix(in srgb, var(--accent-purple) 18%, var(--bg-panel));
+  stroke: var(--accent-purple);
+}
+
+.tf-jvm-obj text {
+  fill: var(--text-1);
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+  dominant-baseline: middle;
+}
+
+.tf-jvm-frame {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+}
+
+.tf-pool-thread {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+  transition: fill 0.25s var(--ease-out), stroke 0.25s var(--ease-out);
+}
+
+.tf-pool-thread.is-busy {
+  fill: color-mix(in srgb, var(--warning) 30%, var(--bg-panel));
+  stroke: var(--warning);
+}
+
+.tf-bit-text {
+  fill: var(--text-1);
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+.tf-ip-card {
+  fill: var(--bg-panel);
+  stroke: var(--border-1);
+}
+
+.tf-ip-card-value {
+  fill: var(--text-1);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.tf-ip-error-bg {
+  fill: color-mix(in srgb, var(--danger) 12%, var(--bg-panel));
+  stroke: var(--danger);
+}
+
+.tf-ip-error-text {
+  fill: var(--danger);
+  font-size: 13px;
+  font-family: var(--font-mono);
+}
+
+/* ===== 减少动态偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .tf-link--flow,
+  .tf-node--processing .tf-node-body {
+    animation: none !important;
+  }
+}

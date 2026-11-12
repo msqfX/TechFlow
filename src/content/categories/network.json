@@ -1,0 +1,21 @@
+{
+  "id": "network",
+  "name": "计算机网络",
+  "description": "分层模型、IP 与 MAC、TCP/UDP、HTTP/HTTPS,看懂数据如何在网络中流动。",
+  "icon": "network",
+  "order": 2,
+  "plannedTutorials": [
+    "计算机网络分层模型",
+    "OSI 七层模型",
+    "TCP/IP 四层模型",
+    "MAC 地址原理",
+    "ARP 协议",
+    "VLAN 原理",
+    "DHCP 原理",
+    "TCP 可靠传输",
+    "UDP 工作原理",
+    "HTTP 工作原理",
+    "HTTPS 工作原理",
+    "TLS 握手过程"
+  ]
+}

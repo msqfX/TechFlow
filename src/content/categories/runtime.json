@@ -1,0 +1,17 @@
+{
+  "id": "runtime",
+  "name": "编程语言与运行时",
+  "description": "编译执行、JVM、Go 运行时与垃圾回收,看懂代码从源码到运行的全过程。",
+  "icon": "braces",
+  "order": 4,
+  "plannedTutorials": [
+    "程序编译与执行",
+    "Java 字节码",
+    "JVM 运行机制",
+    "JVM 类加载机制",
+    "双亲委派模型",
+    "Go GMP 调度模型",
+    "Go 内存分配",
+    "Go GC 原理"
+  ]
+}
