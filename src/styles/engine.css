@@ -565,6 +565,45 @@
   stroke: var(--warning);
 }
 
+/* ===== TCP 可靠传输场景 ===== */
+.tf-window-bracket {
+  stroke: var(--warning);
+  stroke-width: 2;
+}
+
+.tf-seg {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+  transition: fill 0.3s var(--ease-out), stroke 0.3s var(--ease-out);
+}
+
+.tf-seg.is-inflight {
+  fill: color-mix(in srgb, var(--accent) 22%, var(--bg-panel));
+  stroke: var(--accent-bright);
+}
+
+.tf-seg.is-acked {
+  fill: color-mix(in srgb, var(--success) 16%, var(--bg-panel));
+  stroke: var(--success);
+}
+
+.tf-seg.is-lost {
+  fill: color-mix(in srgb, var(--danger) 20%, var(--bg-panel));
+  stroke: var(--danger);
+}
+
+.tf-seg-text {
+  fill: var(--text-1);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.tf-jvm-gen.is-race {
+  stroke: var(--danger);
+  fill: color-mix(in srgb, var(--danger) 10%, var(--bg-panel));
+}
+
 .tf-bit-text {
   fill: var(--text-1);
   font-size: 13px;

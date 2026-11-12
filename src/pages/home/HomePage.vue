@@ -10,6 +10,7 @@ import { difficultyLabel } from '@/utils/format'
 import { usePageMeta } from '@/composables/usePageMeta'
 import AppIcon from '@/components/common/AppIcon.vue'
 import HeroTopology from '@/components/home/HeroTopology.vue'
+import TcpHandshakePreview from '@/components/home/TcpHandshakePreview.vue'
 
 usePageMeta({
   title: '用动画理解技术',
@@ -17,7 +18,7 @@ usePageMeta({
     'TechFlow 是计算机原理可视化交互学习平台:从 CPU 执行指令到网络数据传输,通过动态可视化动画和交互实验理解技术本质。',
 })
 
-const featured = computed(() => featuredTutorials().slice(0, 5))
+const featured = computed(() => featuredTutorials().slice(0, 4))
 
 const stats = computed(() => [
   { value: `${tutorials.length}+`, label: '交互式教程' },
@@ -76,7 +77,7 @@ const stats = computed(() => [
           :key="t.meta.slug"
           :to="`/tutorials/${t.meta.slug}`"
           class="bento-card panel"
-          :class="{ 'bento-hero': i === 0 }"
+          :class="{ 'bento-hero': i === 0, 'bento-wide': i === 3 }"
         >
           <div class="bento-top">
             <span class="bento-cat">{{ t.meta.category }}</span>
@@ -87,6 +88,15 @@ const stats = computed(() => [
           </div>
           <h3 class="bento-title">{{ t.meta.title }}</h3>
           <p class="bento-desc">{{ t.meta.description }}</p>
+          <TcpHandshakePreview
+            v-if="i === 0 && t.meta.slug === 'tcp-handshake'"
+            class="bento-preview"
+          />
+          <div v-if="i === 0" class="bento-tags">
+            <span v-for="tag in t.meta.tags.slice(0, 5)" :key="tag" class="tag">
+              {{ tag }}
+            </span>
+          </div>
           <div class="bento-foot">
             <span class="badge badge--interactive">
               <MousePointerClick :size="12" />
@@ -327,11 +337,11 @@ const stats = computed(() => [
   text-decoration: none;
 }
 
-/* Bento 推荐教程 */
+/* Bento 推荐教程:2 列网格,主卡占左列两行,第 4 张横向铺满底部,不留空洞 */
 .bento {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   gap: 14px;
 }
@@ -352,8 +362,11 @@ const stats = computed(() => [
 }
 
 .bento-hero {
-  grid-column: span 2;
   grid-row: span 2;
+}
+
+.bento-wide {
+  grid-column: span 2;
 }
 
 .bento-top {
@@ -377,13 +390,41 @@ const stats = computed(() => [
 }
 
 .bento-hero .bento-title {
-  font-size: 21px;
+  font-size: 22px;
+}
+
+.bento-hero .bento-desc {
+  font-size: 14px;
+  max-width: 560px;
+  flex: 0 0 auto;
+}
+
+.bento-preview {
+  margin: 6px 0 2px;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .bento-desc {
   color: var(--text-2);
   font-size: 13px;
   flex: 1;
+}
+
+.bento-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 11.5px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-hover);
+  color: var(--text-3);
+  font-family: var(--font-mono);
 }
 
 .bento-foot {
@@ -586,8 +627,11 @@ const stats = computed(() => [
   }
 
   .bento-hero {
-    grid-column: span 1;
     grid-row: span 1;
+  }
+
+  .bento-wide {
+    grid-column: span 1;
   }
 
   .hero {

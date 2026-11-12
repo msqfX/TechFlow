@@ -46,7 +46,7 @@ const NODE_POS: Record<DnsNodeId, { x: number; y: number }> = {
   local: { x: 370, y: 400 },
   root: { x: 370, y: 130 },
   tld: { x: 600, y: 130 },
-  auth: { x: 790, y: 130 },
+  auth: { x: 750, y: 130 },
   target: { x: 640, y: 400 },
 }
 

@@ -22,8 +22,8 @@ describe('内容校验', () => {
     }
   })
 
-  it('首批交付 10 个教程', () => {
-    expect(tutorials.length).toBe(10)
+  it('交付 15 个教程(首批 10 + 二批 5)', () => {
+    expect(tutorials.length).toBe(15)
   })
 
   it('每篇教程的分类都存在', () => {

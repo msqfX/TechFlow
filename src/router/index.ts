@@ -41,6 +41,7 @@ export const routes: RouteRecordRaw[] = [
         path: 'laboratory/:slug',
         name: 'laboratory-detail',
         component: () => import('@/pages/laboratory/LaboratoryDetailPage.vue'),
+        props: true,
         meta: { title: '实验室' },
       },
       {

@@ -4,10 +4,10 @@ export type ThemeMode = 'dark' | 'light'
 
 const STORAGE_KEY = 'techflow:theme'
 
+/** 默认亮色;仅当用户显式切换过深色(localStorage='dark')时才用深色 */
 function loadInitialTheme(): ThemeMode {
-  if (typeof window === 'undefined') return 'dark'
-  const saved = window.localStorage.getItem(STORAGE_KEY)
-  return saved === 'light' ? 'light' : 'dark'
+  if (typeof window === 'undefined') return 'light'
+  return window.localStorage.getItem(STORAGE_KEY) === 'dark' ? 'dark' : 'light'
 }
 
 export const useUiStore = defineStore('ui', {

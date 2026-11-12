@@ -5,7 +5,6 @@
   "icon": "server",
   "order": 3,
   "plannedTutorials": [
-    "CDN 工作原理",
     "NAT 地址转换",
     "负载均衡",
     "正向代理",

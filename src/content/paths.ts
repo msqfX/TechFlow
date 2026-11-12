@@ -26,22 +26,32 @@ export const learningPaths: LearningPath[] = [
         tutorial: 'switch-working',
       },
       {
-        title: '4. TCP 三次握手',
+        title: '4. ARP 协议:IP 到 MAC 的翻译',
+        description: '理解广播请求、单播应答与缓存,以及 ARP 欺骗的原理。',
+        tutorial: 'arp-protocol',
+      },
+      {
+        title: '5. TCP 三次握手',
         description: '用状态机视角理解连接建立过程中的 Seq/Ack 变化。',
         tutorial: 'tcp-handshake',
       },
       {
-        title: '5. TCP 四次挥手',
+        title: '6. TCP 四次挥手',
         description: '理解连接拆除与 TIME_WAIT 的意义。',
         tutorial: 'tcp-teardown',
       },
       {
-        title: '6. DNS 域名解析',
+        title: '7. TCP 可靠传输:滑动窗口与重传',
+        description: '理解累计确认、快速重传与拥塞控制的协作。',
+        tutorial: 'tcp-reliable',
+      },
+      {
+        title: '8. DNS 域名解析',
         description: '理解递归查询与迭代查询,以及各级 DNS 缓存。',
         tutorial: 'dns-resolution',
       },
       {
-        title: '7. HTTP 请求全过程',
+        title: '9. HTTP 请求全过程',
         description: '把 DNS、TCP、TLS、HTTP 串成一条完整链路。',
         tutorial: 'http-request-flow',
       },
@@ -74,6 +84,11 @@ export const learningPaths: LearningPath[] = [
         title: '4. HTTP 请求全过程',
         description: '理解一个 HTTP 请求从浏览器到服务器的完整旅程。',
         tutorial: 'http-request-flow',
+      },
+      {
+        title: '5. HTTPS/TLS 握手',
+        description: '理解证书链验证与密钥协商,以及证书告警的含义。',
+        tutorial: 'tls-handshake',
       },
     ],
   },

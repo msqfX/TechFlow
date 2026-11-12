@@ -98,9 +98,9 @@ function isActive(exact: boolean, to: string): boolean {
   inset: 0 0 auto 0;
   z-index: 100;
   height: var(--nav-height);
-  background: color-mix(in srgb, var(--bg-page) 82%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg-page) 94%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-1);
 }
 
