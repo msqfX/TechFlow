@@ -59,10 +59,10 @@ class DockerScene extends BaseScene<DockerState> {
     this.cgroupChip = renderer.el('text', { x: 70, y: 200 + NAMESPACE_KINDS.length * 30 + 8, class: 'tf-subnet-mono' }, renderer.layerLabels)
 
     // 镜像分层(右)
-    new Label(renderer, { x: 500, y: 174, text: '镜像分层(只读)+ 容器可写层', kind: 'accent', anchor: 'start' })
+    new Label(renderer, { x: 70, y: 430, text: '镜像分层(只读,多容器共享)+ 容器可写层', kind: 'accent', anchor: 'start' })
     this.layerLabels = []
     IMAGE_LAYERS.forEach((l, i) => {
-      const t = renderer.el('text', { x: 510, y: 200 + i * 26, class: 'tf-subnet-mono' }, renderer.layerLabels)
+      const t = renderer.el('text', { x: 80, y: 456 + i * 26, class: 'tf-subnet-mono' }, renderer.layerLabels)
       t.textContent = `${i + 1}. ${l}`
       this.layerLabels.push(t)
     })

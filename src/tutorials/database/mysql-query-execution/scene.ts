@@ -35,8 +35,8 @@ const CLUSTERED_NODES: TreeNodeView[] = [
   { id: 'R', x: 200, y: TREE.clustered.y, keys: ['10 | 30'], tree: 'clustered', isLeaf: false },
   { id: 'I1', x: 110, y: TREE.clustered.y + 80, keys: ['5 | 7'], tree: 'clustered', isLeaf: false },
   { id: 'I2', x: 290, y: TREE.clustered.y + 80, keys: ['15 | 20'], tree: 'clustered', isLeaf: false },
-  { id: 'L10', x: 40, y: TREE.clustered.y + 160, keys: ['id10 · Alice'], tree: 'clustered', isLeaf: true },
-  { id: 'L15', x: 170, y: TREE.clustered.y + 160, keys: ['id15 · Bob'], tree: 'clustered', isLeaf: true },
+  { id: 'L10', x: 110, y: TREE.clustered.y + 160, keys: ['id10 · Alice'], tree: 'clustered', isLeaf: true },
+  { id: 'L15', x: 200, y: TREE.clustered.y + 160, keys: ['id15 · Bob'], tree: 'clustered', isLeaf: true },
   { id: 'L30', x: 300, y: TREE.clustered.y + 160, keys: ['id30 · Carol'], tree: 'clustered', isLeaf: true },
 ]
 const CLUSTERED_EDGES: Array<[string, string]> = [
@@ -45,8 +45,8 @@ const CLUSTERED_EDGES: Array<[string, string]> = [
 
 const SECONDARY_NODES: TreeNodeView[] = [
   { id: 'R2', x: 640, y: TREE.secondary.y, keys: ['Alice | Bob'], tree: 'secondary', isLeaf: false },
-  { id: 'L2a', x: 530, y: TREE.secondary.y + 80, keys: ['Alice → id15'], tree: 'secondary', isLeaf: true },
-  { id: 'L2b', x: 700, y: TREE.secondary.y + 80, keys: ['Bob → id15'], tree: 'secondary', isLeaf: true },
+  { id: 'L2a', x: 560, y: TREE.secondary.y + 80, keys: ['Alice → id15'], tree: 'secondary', isLeaf: true },
+  { id: 'L2b', x: 720, y: TREE.secondary.y + 80, keys: ['Bob → id15'], tree: 'secondary', isLeaf: true },
 ]
 const SECONDARY_EDGES: Array<[string, string]> = [['R2', 'L2a'], ['R2', 'L2b']]
 
@@ -83,7 +83,7 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
     this.poolChips = []
     const stats = ['Buffer Pool 命中', '磁盘读(未命中)', '回表次数']
     stats.forEach((s, i) => {
-      renderer.el('text', { x: 76, y: POOL_Y + 114, class: 'tf-label--muted' }, renderer.layerLabels).textContent = s
+      renderer.el('text', { x: 76 + i * 180, y: POOL_Y + 114, class: 'tf-label--muted' }, renderer.layerLabels).textContent = s
       const v = renderer.el('text', { x: 300 + i * 150, y: POOL_Y + 114, 'text-anchor': 'end', class: 'tf-subnet-mono' }, renderer.layerLabels)
       this.poolChips.push(v)
     })
@@ -194,14 +194,16 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
       if (!visible) return
       for (const n of nodes) {
         const onPath = activeStep && state.steps[state.activeStep]?.path.includes(n.id)
+        // 叶节点文字长(id15 · Bob),加宽到 128;非叶节点按键数计宽
+        const w = n.isLeaf ? 124 : n.keys.length * 60 + 16
         const g = renderer.el('g', { transform: `translate(${n.x} ${n.y})` }, renderer.layerNodes)
         renderer.el('rect', {
-          width: n.keys.length * 60 + 16, height: NODE_H + 8, rx: 8,
+          width: w, height: NODE_H + 8, rx: 8,
           class: `tf-jvm-frame ${onPath ? 'is-top' : ''}`,
         }, g)
         n.keys.forEach((k, i) => {
           renderer.el('text', {
-            x: 8 + i * 60 + 28, y: NODE_H / 2 + 6, 'text-anchor': 'middle', class: 'tf-subnet-mono',
+            x: (n.isLeaf ? w / 2 : 8 + i * 60 + 28), y: NODE_H / 2 + 6, 'text-anchor': 'middle', class: 'tf-subnet-mono',
           }, g).textContent = k
         })
       }

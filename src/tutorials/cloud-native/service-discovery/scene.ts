@@ -169,9 +169,9 @@ class ServiceDiscoveryScene extends BaseScene<RegistryState> {
     if (this.registryListLabel) {
       const lines: string[] = []
       for (const [name, list] of Object.entries(state.services)) {
-        lines.push(`${name}: ${list.map(i => i.addr.split(':')[0]).join(', ')}`)
+        lines.push(`${name} ×${list.length}`)
       }
-      this.registryListLabel.setText(lines.join('\n') === '' ? '(空)' : lines.join(' | '))
+      this.registryListLabel.setText(lines.length ? lines.join(' · ') : '(空)')
     }
     if (this.versionChip) {
       this.versionChip.textContent = `注册表 v${state.version}`
