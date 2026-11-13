@@ -16,8 +16,8 @@ const BUCKET_H = 30
 const BUCKET_STEP = 34
 const MAX_VISIBLE_BUCKETS = 16
 const CHAIN_X0 = 200
-const CHIP_W = 64
-const CHIP_STEP = 72
+const CHIP_W = 70
+const CHIP_STEP = 78
 
 class HashTableScene extends BaseScene<HashTableState> {
   private bucketRows: Array<{ g: SVGGElement; label: SVGTextElement; hl: SVGRectElement }> = []

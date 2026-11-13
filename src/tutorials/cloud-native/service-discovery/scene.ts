@@ -69,8 +69,8 @@ class ServiceDiscoveryScene extends BaseScene<RegistryState> {
     this.versionChip = renderer.el('text', { x: 540, y: 166, class: 'tf-subnet-mono' }, renderer.layerLabels)
 
     // consumer 缓存(右下)
-    this.cacheLabel = new Label(renderer, { x: 700, y: 490, text: '', kind: 'mono', anchor: 'start' })
-    new Label(renderer, { x: 700, y: 466, text: 'consumer 本地缓存:', kind: 'muted', anchor: 'start' })
+    this.cacheLabel = new Label(renderer, { x: 620, y: 490, text: '', kind: 'mono', anchor: 'start' })
+    new Label(renderer, { x: 620, y: 466, text: 'consumer 本地缓存:', kind: 'muted', anchor: 'start' })
 
     // 心跳徽标
     this.heartbeatBadgeA = renderer.el('text', { x: PROVIDER_A.x + 80, y: PROVIDER_A.y - 14, 'text-anchor': 'middle', class: 'tf-subnet-mono' }, renderer.layerLabels)

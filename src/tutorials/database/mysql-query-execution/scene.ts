@@ -35,9 +35,9 @@ const CLUSTERED_NODES: TreeNodeView[] = [
   { id: 'R', x: 200, y: TREE.clustered.y, keys: ['10 | 30'], tree: 'clustered', isLeaf: false },
   { id: 'I1', x: 110, y: TREE.clustered.y + 80, keys: ['5 | 7'], tree: 'clustered', isLeaf: false },
   { id: 'I2', x: 290, y: TREE.clustered.y + 80, keys: ['15 | 20'], tree: 'clustered', isLeaf: false },
-  { id: 'L10', x: 110, y: TREE.clustered.y + 160, keys: ['id10 · Alice'], tree: 'clustered', isLeaf: true },
-  { id: 'L15', x: 200, y: TREE.clustered.y + 160, keys: ['id15 · Bob'], tree: 'clustered', isLeaf: true },
-  { id: 'L30', x: 300, y: TREE.clustered.y + 160, keys: ['id30 · Carol'], tree: 'clustered', isLeaf: true },
+  { id: 'L10', x: 90, y: TREE.clustered.y + 160, keys: ['id10 · Alice'], tree: 'clustered', isLeaf: true },
+  { id: 'L15', x: 234, y: TREE.clustered.y + 160, keys: ['id15 · Bob'], tree: 'clustered', isLeaf: true },
+  { id: 'L30', x: 390, y: TREE.clustered.y + 160, keys: ['id30 · Carol'], tree: 'clustered', isLeaf: true },
 ]
 const CLUSTERED_EDGES: Array<[string, string]> = [
   ['R', 'I1'], ['R', 'I2'], ['I1', 'L10'], ['I1', 'L15'], ['I2', 'L30'],
@@ -46,7 +46,7 @@ const CLUSTERED_EDGES: Array<[string, string]> = [
 const SECONDARY_NODES: TreeNodeView[] = [
   { id: 'R2', x: 640, y: TREE.secondary.y, keys: ['Alice | Bob'], tree: 'secondary', isLeaf: false },
   { id: 'L2a', x: 560, y: TREE.secondary.y + 80, keys: ['Alice → id15'], tree: 'secondary', isLeaf: true },
-  { id: 'L2b', x: 720, y: TREE.secondary.y + 80, keys: ['Bob → id15'], tree: 'secondary', isLeaf: true },
+  { id: 'L2b', x: 712, y: TREE.secondary.y + 80, keys: ['Bob → id15'], tree: 'secondary', isLeaf: true },
 ]
 const SECONDARY_EDGES: Array<[string, string]> = [['R2', 'L2a'], ['R2', 'L2b']]
 
@@ -61,10 +61,14 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
     super({ id: 'mysql-query', viewBox: VIEW, label: 'InnoDB 查询执行(主键/回表/覆盖)' })
   }
 
+  private treeTitles = new Map<string, SVGTextElement>()
+
   protected buildScene(renderer: SVGRenderer): void {
     for (const tree of [TREE.clustered, TREE.secondary]) {
-      renderer.el('text', { x: tree.x + 40, y: tree.label === TREE.clustered.label ? tree.y - 46 : tree.y - 46, class: 'tf-label--accent' }, renderer.layerLabels)
-        .textContent = tree.label
+      const key = tree.label.includes('聚簇') ? 'clustered' : 'secondary'
+      const title = renderer.el('text', { x: tree.x + 40, y: tree.y - 46, class: 'tf-label--accent' }, renderer.layerLabels)
+      title.textContent = tree.label
+      this.treeTitles.set(key, title)
     }
     // Buffer Pool 面板
     renderer.el('rect', { x: 60, y: POOL_Y, width: 720, height: 120, rx: 12, class: 'tf-mem-block' }, renderer.layerLabels)
@@ -84,7 +88,7 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
     const stats = ['Buffer Pool 命中', '磁盘读(未命中)', '回表次数']
     stats.forEach((s, i) => {
       renderer.el('text', { x: 76 + i * 180, y: POOL_Y + 114, class: 'tf-label--muted' }, renderer.layerLabels).textContent = s
-      const v = renderer.el('text', { x: 300 + i * 150, y: POOL_Y + 114, 'text-anchor': 'end', class: 'tf-subnet-mono' }, renderer.layerLabels)
+      const v = renderer.el('text', { x: 216 + i * 180, y: POOL_Y + 114, class: 'tf-subnet-mono' }, renderer.layerLabels)
       this.poolChips.push(v)
     })
 
@@ -178,17 +182,8 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
     renderer.clear('overlay')
 
     const activeStep = state.steps[Math.min(state.activeStep, state.steps.length - 1)]
-    const visibleTrees = new Set<string>()
-    if (state.steps.length > 0) {
-      state.steps.slice(0, state.activeStep + 1).forEach(st => {
-        if (st.tree) visibleTrees.add(st.tree)
-      })
-      if (state.steps[0] && state.steps[0].tree === null) {
-        // 初始步骤也显示两棵树框架(淡)
-      }
-      visibleTrees.add('clustered')
-      if (state.kind !== 'pk') visibleTrees.add('secondary')
-    }
+    const visibleTrees = new Set<string>(['clustered'])
+    if (state.kind !== 'pk') visibleTrees.add('secondary')
 
     const drawTree = (nodes: TreeNodeView[], edges: Array<[string, string]>, visible: boolean) => {
       if (!visible) return
@@ -219,6 +214,9 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
 
     drawTree(CLUSTERED_NODES, CLUSTERED_EDGES, visibleTrees.has('clustered'))
     drawTree(SECONDARY_NODES, SECONDARY_EDGES, visibleTrees.has('secondary'))
+    this.treeTitles.forEach((title, key) => {
+      title.style.opacity = visibleTrees.has(key) ? '1' : '0'
+    })
 
     // 回表箭头(二级叶子 → 聚簇叶子)
     const showBack = state.backToTable > 0 && state.steps.slice(0, state.activeStep + 1).some(st => st.label.includes('回表'))
