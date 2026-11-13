@@ -48,9 +48,9 @@ class LinkedListScene extends BaseScene<LinkedListState> {
     renderer.el('text', { x: 68, y: 118, class: 'tf-subnet-mono' }, renderer.layerLabels).textContent =
       '链表:节点分散,靠指针串联(插入/删除改指针 O(1),访问只能从头走 O(n))'
 
-    renderer.el('text', { x: 68, y: 210, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
+    renderer.el('text', { x: 68, y: 192, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       '链表演示(每个节点 = 值 + next 指针)'
-    renderer.el('text', { x: 68, y: 232, class: 'tf-label--muted' }, renderer.layerLabels).textContent =
+    renderer.el('text', { x: 68, y: 214, class: 'tf-label--muted' }, renderer.layerLabels).textContent =
       '蓝色 = head(入口);箭头 = next 指针;游标 = 遍历位置'
 
     // 节点框(最多 6 个)
@@ -82,7 +82,7 @@ class LinkedListScene extends BaseScene<LinkedListState> {
     this.tailChip = renderer.el('text', { x: NODE_X0, y: NODE_Y + NODE_H + 22, class: 'tf-tcp-state' }, renderer.layerLabels)
 
     this.cursorArrow = renderer.el('path', { class: 'tf-bar-link', fill: 'none', stroke: 'var(--warning)' }, renderer.layerOverlay)
-    this.cursorLabel = renderer.el('text', { x: 0, y: NODE_Y - 14, 'text-anchor': 'middle', class: 'tf-tcp-state tf-tcp-state--warning' }, renderer.layerLabels)
+    this.cursorLabel = renderer.el('text', { x: 0, y: NODE_Y + NODE_H + 22, 'text-anchor': 'middle', class: 'tf-tcp-state tf-tcp-state--warning' }, renderer.layerLabels)
     this.cursorLabel.textContent = '游标'
 
     new Label(renderer, { x: VIEW.width / 2, y: VIEW.height - 8, text: '头插只改 1 个指针 O(1);按下标访问必须从头走 O(n) —— 快写慢读', kind: 'muted' })
@@ -215,10 +215,13 @@ class LinkedListScene extends BaseScene<LinkedListState> {
     if (this.cursorArrow && this.cursorLabel) {
       if (state.cursor !== null && state.cursor < MAX_NODES) {
         const x = NODE_X0 + state.cursor * NODE_STEP + NODE_W / 2
+        const isTail = state.cursor === state.nodes.length - 1
+        const labelY = NODE_Y + NODE_H + 22 + (isTail ? 24 : 0)
         this.cursorArrow.style.opacity = '1'
-        this.cursorArrow.setAttribute('d', `M ${x} ${NODE_Y - 22} v 16 M ${x - 5} ${NODE_Y - 12} l 5 5 l 5 -5`)
+        this.cursorArrow.setAttribute('d', `M ${x} ${NODE_Y + NODE_H + 4} v 12 M ${x - 5} ${NODE_Y + NODE_H + 11} l 5 5 l 5 -5`)
         this.cursorLabel.style.opacity = '1'
         this.cursorLabel.setAttribute('x', String(x))
+        this.cursorLabel.setAttribute('y', String(labelY))
         this.cursorLabel.textContent = `游标:第 ${state.cursor + 1} 个`
       } else {
         this.cursorArrow.style.opacity = '0'
