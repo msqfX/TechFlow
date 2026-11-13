@@ -11,6 +11,8 @@ type Attrs = Record<string, string | number | undefined>
 export class SVGRenderer {
   readonly svg: SVGSVGElement
   readonly defs: SVGDefsElement
+  /** 最底层:大面板背景矩形(必须在所有内容之下) */
+  readonly layerBg: SVGGElement
   readonly layerLinks: SVGGElement
   readonly layerPackets: SVGGElement
   readonly layerNodes: SVGGElement
@@ -35,6 +37,7 @@ export class SVGRenderer {
     }
 
     this.defs = document.createElementNS(svgNs, 'defs')
+    this.layerBg = document.createElementNS(svgNs, 'g')
     this.layerLinks = document.createElementNS(svgNs, 'g')
     this.layerPackets = document.createElementNS(svgNs, 'g')
     this.layerNodes = document.createElementNS(svgNs, 'g')
@@ -48,6 +51,7 @@ export class SVGRenderer {
 
     this.svg.append(
       this.defs,
+      this.layerBg,
       this.layerLinks,
       this.layerPackets,
       this.layerNodes,

@@ -40,7 +40,7 @@ class DockerScene extends BaseScene<DockerState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     // 宿主机内核
-    renderer.el('rect', { x: 40, y: 90, width: 760, height: 420, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 40, y: 90, width: 760, height: 420, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: 58, y: 116, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       '宿主机 Linux 内核(所有容器共享 —— 容器不是虚拟机)'
     this.kernelBar = renderer.el('text', { x: 58, y: 140, class: 'tf-subnet-mono' }, renderer.layerLabels)
@@ -68,7 +68,7 @@ class DockerScene extends BaseScene<DockerState> {
     })
     this.writableLabels = []
     CONTAINER_X.forEach((x, i) => {
-      const box = renderer.el('rect', { x, y: CONTAINER_Y, width: CONTAINER_W, height: 250, rx: 12, class: 'tf-mem-block' }, renderer.layerLabels)
+      const box = renderer.el('rect', { x, y: CONTAINER_Y, width: CONTAINER_W, height: 250, rx: 12, class: 'tf-mem-block' }, renderer.layerBg)
       this.containerGroups.set(`c${i}`, box)
       const title = renderer.el('text', { x: x + 16, y: CONTAINER_Y + 28, class: 'tf-http-title' }, renderer.layerLabels)
       title.textContent = `容器 ${i + 1}`

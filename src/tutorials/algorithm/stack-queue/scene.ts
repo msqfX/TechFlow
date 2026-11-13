@@ -43,7 +43,7 @@ class StackQueueScene extends BaseScene<StackQueueState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     // ===== 左:栈 =====
-    renderer.el('rect', { x: 100, y: 100, width: 260, height: 380, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 100, y: 100, width: 260, height: 380, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: 118, y: 126, class: 'tf-label--accent' }, renderer.layerLabels).textContent = '栈 · LIFO 后进先出'
     renderer.el('text', { x: 118, y: 148, class: 'tf-label--muted' }, renderer.layerLabels).textContent = 'push/pop/peek 都在栈顶'
 
@@ -61,10 +61,10 @@ class StackQueueScene extends BaseScene<StackQueueState> {
     }
 
     this.stackTopArrow = renderer.el('path', { class: 'tf-bar-link', fill: 'none', stroke: 'var(--accent-bright)' }, renderer.layerOverlay)
-    this.poppedChip = renderer.el('text', { x: STACK_X + STACK_W + 20, y: STACK_BASE_Y - 30, class: 'tf-subnet-result ok' }, renderer.layerLabels)
+    this.poppedChip = renderer.el('text', { x: STACK_X, y: STACK_BASE_Y + 34, class: 'tf-subnet-result ok' }, renderer.layerLabels)
 
     // ===== 右:队列 =====
-    renderer.el('rect', { x: 420, y: 260, width: 400, height: 220, rx: 14, class: 'tf-mem-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 420, y: 260, width: 400, height: 220, rx: 14, class: 'tf-mem-block' }, renderer.layerBg)
     renderer.el('text', { x: 438, y: 286, class: 'tf-label--accent' }, renderer.layerLabels).textContent = '队列 · FIFO 先进先出'
     renderer.el('text', { x: 438, y: 308, class: 'tf-label--muted' }, renderer.layerLabels).textContent = 'enqueue 队尾进,dequeue 队头出'
 
@@ -78,8 +78,8 @@ class StackQueueScene extends BaseScene<StackQueueState> {
       this.queueBoxes.push({ g, rect, text })
     }
     // 队头/队尾标注
-    renderer.el('text', { x: QUEUE_X0, y: QUEUE_Y - 12, class: 'tf-label--accent' }, renderer.layerLabels).textContent = '← 队头(dequeue)'
-    renderer.el('text', { x: QUEUE_X0 + SQ_CAPACITY * QUEUE_W - 10, y: QUEUE_Y - 12, 'text-anchor': 'end', class: 'tf-label--muted' }, renderer.layerLabels).textContent = '队尾(enqueue)→'
+    renderer.el('text', { x: QUEUE_X0, y: QUEUE_Y + QUEUE_H + 26, class: 'tf-label--accent' }, renderer.layerLabels).textContent = '← 队头(dequeue)'
+    renderer.el('text', { x: QUEUE_X0 + SQ_CAPACITY * QUEUE_W - 10, y: QUEUE_Y + QUEUE_H + 26, 'text-anchor': 'end', class: 'tf-label--muted' }, renderer.layerLabels).textContent = '队尾(enqueue)→'
 
     this.dequeuedChip = renderer.el('text', { x: QUEUE_X0, y: QUEUE_Y + QUEUE_H + 36, class: 'tf-subnet-result ok' }, renderer.layerLabels)
 

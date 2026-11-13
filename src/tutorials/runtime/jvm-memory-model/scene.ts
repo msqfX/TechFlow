@@ -36,7 +36,7 @@ class JvmMemoryScene extends BaseScene<JvmState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     // 栈区
-    renderer.el('rect', { x: STACK.x, y: STACK.y, width: STACK.w, height: STACK.h, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: STACK.x, y: STACK.y, width: STACK.w, height: STACK.h, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: STACK.x + 16, y: STACK.y + 26, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       '虚拟机栈(线程私有)'
     renderer.el('text', { x: STACK.x + 16, y: STACK.y + 46, class: 'tf-label--muted' }, renderer.layerLabels).textContent =
@@ -46,7 +46,7 @@ class JvmMemoryScene extends BaseScene<JvmState> {
       'GC Roots:栈帧局部变量表中的引用'
 
     // 堆区
-    renderer.el('rect', { x: HEAP.x, y: HEAP.y, width: HEAP.w, height: HEAP.h, rx: 14, class: 'tf-mem-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: HEAP.x, y: HEAP.y, width: HEAP.w, height: HEAP.h, rx: 14, class: 'tf-mem-block' }, renderer.layerBg)
     renderer.el('text', { x: HEAP.x + 16, y: HEAP.y + 26, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       '堆(线程共享)— 对象分配与 GC 主战场'
 

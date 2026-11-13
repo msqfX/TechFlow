@@ -56,7 +56,7 @@ class TomcatScene extends BaseScene<TomcatState> {
   }
 
   protected buildScene(renderer: SVGRenderer): void {
-    renderer.el('rect', { x: 44, y: 40, width: 750, height: 44, rx: 10, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 44, y: 40, width: 750, height: 44, rx: 10, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: 60, y: 68, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       'Server(整个 JVM 实例) → Service(打包 Connector + Engine)'
     renderer.el('line', { x1: 60, y1: 160, x2: 780, y2: 160, class: 'tf-link', stroke: 'var(--border-1)' }, renderer.layerLinks)

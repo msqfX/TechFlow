@@ -44,7 +44,7 @@ class ProcessThreadScene extends BaseScene<SchedulerState> {
     })
 
     // 进程 A 框(地址空间)
-    renderer.el('rect', { x: 60, y: 150, width: 480, height: 300, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 60, y: 150, width: 480, height: 300, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: 78, y: 176, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       '进程 A 的地址空间(资源分配单位,隔离于其他进程)'
     renderer.el('text', { x: 78, y: 196, class: 'tf-label--muted' }, renderer.layerLabels).textContent =
@@ -76,7 +76,7 @@ class ProcessThreadScene extends BaseScene<SchedulerState> {
     this.lockChip = renderer.el('text', { x: 560, y: 380, class: 'tf-tcp-state' }, renderer.layerLabels)
 
     // 进程 B(隔离示意)
-    renderer.el('rect', { x: 570, y: 150, width: 240, height: 300, rx: 14, class: 'tf-mem-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 570, y: 150, width: 240, height: 300, rx: 14, class: 'tf-mem-block' }, renderer.layerBg)
     renderer.el('text', { x: 588, y: 176, class: 'tf-label--accent' }, renderer.layerLabels).textContent = '进程 B(地址空间隔离)'
     renderer.el('text', { x: 588, y: 200, class: 'tf-label--muted' }, renderer.layerLabels).textContent = 'counter = 100'
     renderer.el('text', { x: 588, y: 224, class: 'tf-label--muted' }, renderer.layerLabels).textContent =

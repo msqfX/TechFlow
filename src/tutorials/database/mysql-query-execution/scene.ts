@@ -71,7 +71,7 @@ class MysqlQueryScene extends BaseScene<QueryExecState> {
       this.treeTitles.set(key, title)
     }
     // Buffer Pool 面板
-    renderer.el('rect', { x: 60, y: POOL_Y, width: 720, height: 120, rx: 12, class: 'tf-mem-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 60, y: POOL_Y, width: 720, height: 120, rx: 12, class: 'tf-mem-block' }, renderer.layerBg)
     renderer.el('text', { x: 76, y: POOL_Y + 26, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       'Buffer Pool(内存中的数据页缓存;16KB/页)'
     renderer.el('text', { x: 76, y: POOL_Y + 50, class: 'tf-label--muted' }, renderer.layerLabels).textContent = '已缓存页:'

@@ -44,7 +44,7 @@ class MysqlArchScene extends BaseScene<MysqlState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     // Server 层框
-    renderer.el('rect', { x: SERVER_BOX.x, y: SERVER_BOX.y, width: SERVER_BOX.w, height: SERVER_BOX.h, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: SERVER_BOX.x, y: SERVER_BOX.y, width: SERVER_BOX.w, height: SERVER_BOX.h, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     renderer.el('text', { x: SERVER_BOX.x + 16, y: SERVER_BOX.y + 24, class: 'tf-label--accent' }, renderer.layerLabels).textContent =
       'Server 层(跨引擎共享)'
 

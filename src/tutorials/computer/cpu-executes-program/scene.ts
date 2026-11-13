@@ -44,10 +44,10 @@ class CpuExecScene extends BaseScene<CpuState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     // CPU 外框
-    renderer.el('rect', { x: 60, y: 60, width: 560, height: 240, rx: 14, class: 'tf-cpu-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 60, y: 60, width: 560, height: 240, rx: 14, class: 'tf-cpu-block' }, renderer.layerBg)
     const cpuTitle = renderer.el('text', { x: 80, y: 84, class: 'tf-label--accent' }, renderer.layerLabels)
     cpuTitle.textContent = 'CPU(教学模型:顺序单发射)'
-    renderer.el('rect', { x: 600, y: 60, width: 210, height: 420, rx: 14, class: 'tf-mem-block' }, renderer.layerLabels)
+    renderer.el('rect', { x: 600, y: 60, width: 210, height: 420, rx: 14, class: 'tf-mem-block' }, renderer.layerBg)
     const memTitle = renderer.el('text', { x: 700, y: 84, 'text-anchor': 'middle', class: 'tf-label--accent' }, renderer.layerLabels)
     memTitle.textContent = '内存'
     renderer.el('text', { x: 700, y: 104, 'text-anchor': 'middle', class: 'tf-label--muted' }, renderer.layerLabels).textContent =
