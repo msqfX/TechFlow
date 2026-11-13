@@ -5,11 +5,8 @@
   "icon": "binary",
   "order": 8,
   "plannedTutorials": [
-    "数组",
-    "哈希表",
     "二叉树",
     "红黑树",
-    "归并排序",
     "堆排序",
     "BFS",
     "DFS",
