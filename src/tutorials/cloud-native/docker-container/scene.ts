@@ -19,8 +19,8 @@ import type { DockerState } from './model'
 /** Docker 场景:宿主机内核 + 容器进程 + 隔离维度开关 + 镜像分层 */
 
 const VIEW = { width: 840, height: 620 }
-const CONTAINER_X = [110, 480]
-const CONTAINER_Y = 170
+const CONTAINER_X = [480, 480]
+const CONTAINER_Y = [200, 420]
 const CONTAINER_W = 300
 
 class DockerScene extends BaseScene<DockerState> {
@@ -68,16 +68,17 @@ class DockerScene extends BaseScene<DockerState> {
     })
     this.writableLabels = []
     CONTAINER_X.forEach((x, i) => {
-      const box = renderer.el('rect', { x, y: CONTAINER_Y, width: CONTAINER_W, height: 250, rx: 12, class: 'tf-mem-block' }, renderer.layerBg)
+      const y = CONTAINER_Y[i]!
+      const box = renderer.el('rect', { x, y, width: CONTAINER_W, height: 190, rx: 12, class: 'tf-mem-block' }, renderer.layerBg)
       this.containerGroups.set(`c${i}`, box)
-      const title = renderer.el('text', { x: x + 16, y: CONTAINER_Y + 28, class: 'tf-http-title' }, renderer.layerLabels)
+      const title = renderer.el('text', { x: x + 16, y: y + 28, class: 'tf-http-title' }, renderer.layerLabels)
       title.textContent = `容器 ${i + 1}`
-      const w = renderer.el('text', { x: x + 16, y: CONTAINER_Y + 250 - 30, class: 'tf-subnet-mono' }, renderer.layerLabels)
+      const w = renderer.el('text', { x: x + 16, y: y + 170, class: 'tf-subnet-mono' }, renderer.layerLabels)
       this.writableLabels.push(w)
     })
-    // 可写层标注
-    renderer.el('rect', { x: CONTAINER_X[0]! + 10, y: CONTAINER_Y + 180, width: CONTAINER_W - 20, height: 40, rx: 7, class: 'tf-subnet-row-bg' }, renderer.layerNodes)
-    renderer.el('text', { x: CONTAINER_X[0]! + 20, y: CONTAINER_Y + 206, class: 'tf-subnet-mono' }, renderer.layerLabels).textContent = '可写层(容器销毁即丢)'
+    // 可写层标注(容器 1 内)
+    renderer.el('rect', { x: CONTAINER_X[0]! + 10, y: CONTAINER_Y[0]! + 120, width: CONTAINER_W - 20, height: 40, rx: 7, class: 'tf-subnet-row-bg' }, renderer.layerNodes)
+    renderer.el('text', { x: CONTAINER_X[0]! + 20, y: CONTAINER_Y[0]! + 146, class: 'tf-subnet-mono' }, renderer.layerLabels).textContent = '可写层(容器销毁即丢)'
 
     // VM 对照
     this.vmNote = renderer.el('text', { x: VIEW.width / 2, y: VIEW.height - 26, 'text-anchor': 'middle', class: 'tf-label--muted' }, renderer.layerLabels)

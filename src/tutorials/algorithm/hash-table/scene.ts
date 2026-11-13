@@ -34,7 +34,7 @@ class HashTableScene extends BaseScene<HashTableState> {
 
   protected buildScene(renderer: SVGRenderer): void {
     new Label(renderer, { x: 60, y: 40, text: '桶(hash(key) % bucketCount)', kind: 'accent', anchor: 'start' })
-    new Label(renderer, { x: CHAIN_X0, y: 40, text: '冲突链(链地址法:同桶键依次挂链)', kind: 'accent', anchor: 'start' })
+    new Label(renderer, { x: CHAIN_X0 + 90, y: 40, text: '冲突链(链地址法:同桶键依次挂链)', kind: 'accent', anchor: 'start' })
 
     // 预建最多 16 行(4→8→16 扩容可见)
     this.bucketRows = []
@@ -205,7 +205,7 @@ class HashTableScene extends BaseScene<HashTableState> {
       const w = Math.min(400, (400 * factor) / 1.5)
       if (tl) tl.to(this.factorBar, { attr: { width: w }, duration: 0.4 }, 0)
       else this.factorBar.setAttribute('width', String(w))
-      this.factorText.textContent = `负载因子 ${factor.toFixed(2)}(键 ${state.size} / 桶 ${state.bucketCount})`
+      this.factorText.textContent = `负载因子 ${factor.toFixed(2)}`
       this.factorText.setAttribute('class', `tf-subnet-mono ${factor > LOAD_FACTOR_THRESHOLD ? 'bad' : ''}`)
       if (factor > LOAD_FACTOR_THRESHOLD) this.factorText.setAttribute('style', 'fill: var(--warning)')
       else this.factorText.removeAttribute('style')

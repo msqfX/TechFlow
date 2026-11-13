@@ -59,7 +59,7 @@ class QuickSortScene extends BaseScene<QuickState> {
     // 递归栈芯片
     this.stackChips = []
     for (let i = 0; i < 4; i++) {
-      const chip = renderer.el('text', { x: 640 + i * 52, y: 92, 'text-anchor': 'middle', class: 'tf-subnet-mono' }, renderer.layerLabels)
+      const chip = renderer.el('text', { x: 640 + i * 52, y: 114, 'text-anchor': 'middle', class: 'tf-subnet-mono' }, renderer.layerLabels)
       this.stackChips.push(chip)
     }
 

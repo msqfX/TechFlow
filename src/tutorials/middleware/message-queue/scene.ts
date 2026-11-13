@@ -63,7 +63,7 @@ class MqScene extends BaseScene<MqState> {
       this.msgBoxes.push({ g, rect, text })
     }
 
-    this.depthChip = renderer.el('text', { x: QUEUE_X0 + MSG_STEP * 5 - 6, y: QUEUE_Y + MSG_ROWS * MSG_H + 14, 'text-anchor': 'end', class: 'tf-subnet-mono' }, renderer.layerLabels)
+    this.depthChip = renderer.el('text', { x: QUEUE_X0 + MSG_STEP * 5 - 6, y: QUEUE_Y + MSG_ROWS * MSG_H + 44, 'text-anchor': 'end', class: 'tf-subnet-mono' }, renderer.layerLabels)
 
     // 速率芯片
     this.rateChips = []

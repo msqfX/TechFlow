@@ -68,7 +68,7 @@ class RaftScene extends BaseScene<RaftState> {
       })
       this.nodes.set(name, node)
       const chip = renderer.el('text', {
-        x: pos.x, y: pos.y + 56, 'text-anchor': 'middle', class: 'tf-subnet-mono',
+        x: pos.x, y: pos.y + 72, 'text-anchor': 'middle', class: 'tf-subnet-mono',
       }, renderer.layerLabels)
       this.termChips.set(name, chip)
     })
