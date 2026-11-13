@@ -8,10 +8,8 @@
     "Servlet 工作原理",
     "Spring Boot 启动过程",
     "Spring Bean 生命周期",
-    "Nginx 工作原理",
     "Redis 数据结构",
     "Redis 持久化",
-    "MySQL 连接池",
-    "消息队列工作原理"
+    "MySQL 连接池"
   ]
 }
