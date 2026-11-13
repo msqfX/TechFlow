@@ -5,7 +5,6 @@
   "icon": "cloud",
   "order": 6,
   "plannedTutorials": [
-    "Docker 容器原理",
     "Docker 镜像原理",
     "Kubernetes 架构",
     "Pod 创建过程",

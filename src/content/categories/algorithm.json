@@ -5,11 +5,8 @@
   "icon": "binary",
   "order": 8,
   "plannedTutorials": [
-    "二叉树",
     "红黑树",
     "堆排序",
-    "BFS",
-    "DFS",
     "Dijkstra 最短路径"
   ]
 }
