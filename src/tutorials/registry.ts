@@ -11,6 +11,8 @@ export const sceneLoaders: Record<string, () => Promise<SceneModule>> = {
   'tcp-handshake': () => import('./network/tcp-handshake/scene').then(m => m.default),
   'tcp-teardown': () => import('./network/tcp-teardown/scene').then(m => m.default),
   'tcp-reliable': () => import('./network/tcp-reliable/scene').then(m => m.default),
+  'tls-cert': () => import('./network/tls-cert-verification/scene').then(m => m.default),
+  'udp': () => import('./network/udp-protocol/scene').then(m => m.default),
   'arp': () => import('./network/arp-protocol/scene').then(m => m.default),
   'dns-resolution': () => import('./infrastructure/dns-resolution/scene').then(m => m.default),
   'switch': () => import('./network/switch-working/scene').then(m => m.default),

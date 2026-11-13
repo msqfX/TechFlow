@@ -46,12 +46,17 @@ export const learningPaths: LearningPath[] = [
         tutorial: 'tcp-reliable',
       },
       {
-        title: '8. DNS 域名解析',
+        title: '8. UDP:无连接的另一条路',
+        description: '对比 TCP 理解 UDP 的取舍,以及 QUIC 的定位。',
+        tutorial: 'udp-protocol',
+      },
+      {
+        title: '9. DNS 域名解析',
         description: '理解递归查询与迭代查询,以及各级 DNS 缓存。',
         tutorial: 'dns-resolution',
       },
       {
-        title: '9. HTTP 请求全过程',
+        title: '10. HTTP 请求全过程',
         description: '把 DNS、TCP、TLS、HTTP 串成一条完整链路。',
         tutorial: 'http-request-flow',
       },

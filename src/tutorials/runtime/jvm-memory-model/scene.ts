@@ -291,6 +291,7 @@ class JvmMemoryScene extends BaseScene<JvmState> {
         const method = document.createElementNS('http://www.w3.org/2000/svg', 'text')
         method.setAttribute('x', String(STACK.x + 30))
         method.setAttribute('y', '0')
+        method.setAttribute('class', 'tf-http-title')
         g.appendChild(method)
         const locals = document.createElementNS('http://www.w3.org/2000/svg', 'text')
         locals.setAttribute('x', String(STACK.x + 30))

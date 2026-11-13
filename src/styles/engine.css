@@ -17,6 +17,12 @@
   display: block;
 }
 
+/* 兜底:SVG 文本默认用主题文字色,防止未设样式的文字在深色下变成默认黑色 */
+.tf-scene text,
+.tf-scene-host text {
+  fill: var(--text-1);
+}
+
 .tf-scene-canvas {
   display: block;
   margin: 0 auto;

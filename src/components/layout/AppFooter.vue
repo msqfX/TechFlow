@@ -42,6 +42,22 @@ const siteLinks = [
         <RouterLink v-for="l in siteLinks" :key="l.to" :to="l.to" class="footer-link">
           {{ l.label }}
         </RouterLink>
+        <a
+          href="https://www.msqf.cc"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          博客 ↗
+        </a>
+        <a
+          href="https://github.com/msqfX/TechFlow"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          GitHub ↗
+        </a>
       </nav>
     </div>
 
