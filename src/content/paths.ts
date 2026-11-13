@@ -166,7 +166,8 @@ export const learningPaths: LearningPath[] = [
       },
       {
         title: '2. 数据结构与算法基础',
-        description: '补齐树、排序、哈希等基础知识。',
+        description: '栈与队列、链表、经典排序 —— 补齐后两项的底层直觉。',
+        tutorial: 'stack-queue',
       },
       {
         title: '3. MySQL 查询执行过程(规划中)',

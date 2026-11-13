@@ -610,6 +610,50 @@
   fill: color-mix(in srgb, var(--danger) 10%, var(--bg-panel));
 }
 
+/* ===== 算法教程通用(柱状图/高亮) ===== */
+.tf-bar {
+  fill: var(--bg-panel);
+  stroke: var(--border-2);
+  transition: fill 0.25s var(--ease-out), stroke 0.25s var(--ease-out);
+}
+
+.tf-bar.is-active {
+  fill: color-mix(in srgb, var(--warning) 20%, var(--bg-panel));
+  stroke: var(--warning);
+}
+
+.tf-bar.is-swap {
+  fill: color-mix(in srgb, var(--danger) 20%, var(--bg-panel));
+  stroke: var(--danger);
+}
+
+.tf-bar.is-sorted {
+  fill: color-mix(in srgb, var(--success) 16%, var(--bg-panel));
+  stroke: var(--success);
+}
+
+.tf-bar.is-pivot {
+  fill: color-mix(in srgb, var(--accent-purple) 22%, var(--bg-panel));
+  stroke: var(--accent-purple);
+}
+
+.tf-bar-value {
+  fill: var(--text-1);
+  font-size: 17px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.tf-bar-link {
+  stroke-width: 2;
+}
+
+.tf-jvm-frame.is-top,
+.tf-jvm-frame.is-front {
+  stroke: var(--accent-bright);
+  stroke-width: 2;
+}
+
 .tf-bit-text {
   fill: var(--text-1);
   font-size: 13px;
